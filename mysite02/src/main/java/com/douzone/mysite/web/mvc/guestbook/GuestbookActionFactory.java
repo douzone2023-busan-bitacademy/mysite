@@ -1,7 +1,7 @@
-package me.kickscar.mysite.web.mvc.guestbook;
+package com.douzone.mysite.web.mvc.guestbook;
 
-import me.kickscar.web.mvc.Action;
-import me.kickscar.web.mvc.ActionFactory;
+import com.douzone.web.mvc.Action;
+import com.douzone.web.mvc.ActionFactory;
 
 public class GuestbookActionFactory extends ActionFactory {
 

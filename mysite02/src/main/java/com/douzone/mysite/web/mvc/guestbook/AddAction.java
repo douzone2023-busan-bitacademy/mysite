@@ -1,4 +1,4 @@
-package me.kickscar.mysite.web.mvc.guestbook;
+package com.douzone.mysite.web.mvc.guestbook;
 
 import java.io.IOException;
 
@@ -6,10 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import me.kickscar.mysite.repository.GuestbookRepository;
-import me.kickscar.mysite.vo.GuestbookVo;
-import me.kickscar.web.mvc.Action;
-import me.kickscar.web.mvc.MvcUtils;
+import com.douzone.mysite.dao.GuestbookDao;
+import com.douzone.mysite.vo.GuestbookVo;
+import com.douzone.web.mvc.Action;
 
 public class AddAction implements Action {
 
@@ -24,8 +23,8 @@ public class AddAction implements Action {
 		vo.setPassword(password);
 		vo.setMessage(message);
 		
-		new GuestbookRepository().insert(vo);
-		MvcUtils.redirect(request.getContextPath() + "/guestbook", request, response);
+		new GuestbookDao().insert(vo);
+		response.sendRedirect(request.getContextPath() + "/guestbook");
 	}
 
 }
