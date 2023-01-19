@@ -12,8 +12,7 @@ import com.douzone.mysite.vo.UserVo;
 import com.douzone.web.mvc.Action;
 import com.douzone.web.util.MvcUtil;
 
-public class UpdateFormAction implements Action {
-
+public class UpdateAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Access Control(보안, 인증체크)
@@ -25,11 +24,19 @@ public class UpdateFormAction implements Action {
 		}
 		//////////////////////////////////////////////////////
 		
-		Long no = authUser.getNo();
-		UserVo userVo = new UserDao().findByNo(no);
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		String gender = request.getParameter("gender");
 		
-		request.setAttribute("userVo", userVo);
-		MvcUtil.forward("user/updateform", request, response);
-	}
+		UserVo vo = new UserVo();
+		vo.setName(name);
+		vo.setPassword(password);
+		vo.setGender(gender);
+		vo.setNo(authUser.getNo());
 
+		new UserDao().update(vo);
+		authUser.setName(name);
+		
+		MvcUtil.redirect(request.getContextPath() + "/user?a=updateform", request, response);
+	}
 }
