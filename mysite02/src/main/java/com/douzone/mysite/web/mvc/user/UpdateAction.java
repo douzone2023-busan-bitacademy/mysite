@@ -1,4 +1,4 @@
-package com.douzone.mysite.mvc.user;
+package com.douzone.mysite.web.mvc.user;
 
 import java.io.IOException;
 

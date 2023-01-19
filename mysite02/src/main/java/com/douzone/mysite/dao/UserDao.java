@@ -100,10 +100,7 @@ public class UserDao {
 		try {
 			conn = getConnection();
 			
-			String sql =
-				" select no, name, email, gender " + 
-			    "   from user " + 
-				"  where no=?";
+			String sql = "select no, name, email, gender from user where no=?";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setLong(1, no);
@@ -139,29 +136,21 @@ public class UserDao {
 		return vo;
 	}
 
-	public boolean update(UserVo vo) {
-		boolean result = false;
-
+	public void update(UserVo vo) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = getConnection();
 			
 			if("".equals(vo.getPassword())) {
-				String sql =
-						" update user " + 
-						"    set name=?, gender=?" + 
-						"  where no=?";
+				String sql = "update user set name=?, gender=? where no=?";
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, vo.getName());
 				pstmt.setString(2, vo.getGender());
 				pstmt.setLong(3, vo.getNo());
 			} else {
-				String sql =
-						" update user " + 
-						"    set name=?, gender=?, password=?" + 
-						"  where no=?";
+				String sql = "update user set name=?, gender=?, password=password(?) where no=?";
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, vo.getName());
@@ -170,8 +159,7 @@ public class UserDao {
 				pstmt.setLong(4, vo.getNo());
 			}
 			
-			int count = pstmt.executeUpdate();
-			result = count == 1;			
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("error:" + e);
 		} finally {
@@ -186,8 +174,6 @@ public class UserDao {
 				e.printStackTrace();
 			}
 		}		
-		
-		return result;
 	}
 	
 	private Connection getConnection() throws SQLException {

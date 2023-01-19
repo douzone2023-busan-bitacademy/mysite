@@ -6,4 +6,4 @@ select * from user;
 insert into user values (null, '안대혁', 'kickscar@gmail.com', password('1234'), 'male', now());
 
 -- login
-select * from user where email = 'kickscar@gmail.com' and password = password('123');
+select no, name from user where email = 'kickscar@gmail.com' and password = password('1234');
