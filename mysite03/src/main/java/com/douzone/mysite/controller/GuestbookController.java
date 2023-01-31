@@ -1,4 +1,4 @@
-package me.kickscar.mysite.controller;
+package com.douzone.mysite.controller;
 
 import java.util.List;
 
@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import me.kickscar.mysite.service.GuestbookService;
-import me.kickscar.mysite.vo.GuestbookVo;
+import com.douzone.mysite.service.GuestbookService;
+import com.douzone.mysite.vo.GuestbookVo;
+
 
 @Controller
 @RequestMapping("/guestbook")
 public class GuestbookController {
 	@Autowired
-	GuestbookService guestbookService;
+	private GuestbookService guestbookService;
 	
 	@RequestMapping("")
 	public String index(Model model) {
