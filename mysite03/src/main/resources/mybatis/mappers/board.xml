@@ -10,9 +10,9 @@
 				values ( null,
 						 #{title },
 						 #{contents },
-						 now(),
 						 0,
-						 ( select ifnull( max( group_no ), 0 ) + 1
+						 now(),
+						 ( select ifnull(max(g_no), 0) + 1
 						     from board a ),
 						 1, 
 						 0, 
@@ -26,8 +26,8 @@
 				values ( null,
 						 #{title },
 						 #{contents },
-						 now(),
 						 0,
+						 now(),
 						 #{groupNo },
 						 #{orderNo }, 
 						 #{depth }, 
@@ -61,8 +61,8 @@
 		select	no,
 				title,
 				contents,
-				group_no as groupNo,
-				order_no as orderNo,
+				g_no as groupNo,
+				o_no as orderNo,
 				depth,
 				user_no as userNo
 		   from board
@@ -94,7 +94,7 @@
 				  		 a.user_no as userNo
 					from board a, user b
 				   where a.user_no = b.no
-				order by group_no desc, order_no asc
+				order by g_no desc, o_no asc
 				   limit #{startIndex }, #{size }				
 				]]>
 			</when>
@@ -110,7 +110,7 @@
 				  	from board a, user b
 				   where a.user_no = b.no
 				     and (title like '%${keyword }%' or contents like '%${keyword }%')
-				order by group_no desc, order_no asc
+				order by g_no desc, o_no asc
 				   limit #{startIndex }, #{size }				
 				]]>			
 			</otherwise>
@@ -128,9 +128,9 @@
 	<update id="updateOrederNo" parameterType="map">
 		<![CDATA[
 		update board
-		   set order_no = order_no + 1
-		 where group_no = #{groupNo }
-		   and order_no >= #{orderNo }
+		   set o_no = o_no + 1
+		 where g_no = #{groupNo }
+		   and o_no >= #{orderNo }
 		]]>	
 	</update>	
 	

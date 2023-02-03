@@ -1,4 +1,4 @@
-package me.kickscar.mysite.vo;
+package com.douzone.mysite.vo;
 
 public class BoardVo {
 	private Long no;
