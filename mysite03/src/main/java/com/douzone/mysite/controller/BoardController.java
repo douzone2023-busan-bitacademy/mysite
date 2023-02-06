@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.douzone.mysite.security.Auth;
 import com.douzone.mysite.service.BoardService;
 import com.douzone.mysite.vo.BoardVo;
 import com.douzone.mysite.vo.UserVo;
@@ -32,7 +33,7 @@ public class BoardController {
 		
 		Map<String, Object> map = boardService.getContentsList(page, keyword);
 
-		//model.addAllAttributes(map);
+		// model.addAllAttributes(map);
 		model.addAttribute("map", map);
 		model.addAttribute("keyword", keyword);
 		
@@ -104,15 +105,9 @@ public class BoardController {
 				"&kwd=" + WebUtil.encodeURL( keyword, "UTF-8" );
 	}
 
+	@Auth
 	@RequestMapping(value="/write", method=RequestMethod.GET)	
-	public String write(HttpSession session) {
-		// Access Control
-		UserVo authUser = (UserVo)session.getAttribute("authUser");
-		if(authUser == null) {
-			return "redirect:/";
-		}
-		//////////////////////////////////////////////////
-
+	public String write() {
 		return "board/write";
 	}
 
