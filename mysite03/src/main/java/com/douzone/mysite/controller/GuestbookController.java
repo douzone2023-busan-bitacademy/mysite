@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.douzone.mysite.service.GuestbookService;
 import com.douzone.mysite.vo.GuestbookVo;
 
-
 @Controller
 @RequestMapping("/guestbook")
 public class GuestbookController {
@@ -24,6 +23,7 @@ public class GuestbookController {
 	public String index(Model model) {
 		List<GuestbookVo> list = guestbookService.getMessageList();
 		model.addAttribute("list", list);
+		
 		return "guestbook/index";
 	}
 	
