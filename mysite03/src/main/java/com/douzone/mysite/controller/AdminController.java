@@ -31,6 +31,7 @@ public class AdminController {
 	@RequestMapping("/main/update")
 	public String update(SiteVo vo) {
 		// siteService.updateSite(vo);
+		
 		return "redirect:/admin";
 	}
 	
