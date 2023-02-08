@@ -16,6 +16,6 @@ public class SiteService {
 	}
 	
 	public void updateSite(SiteVo vo) {
-		// sietRepository.update(vo);
+		sietRepository.update(vo);
 	}
 }
