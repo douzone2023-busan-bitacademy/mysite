@@ -19,15 +19,10 @@ public class ApplicationContextEventListener {
 	
 	@EventListener({ContextRefreshedEvent.class})
 	public void handleContextRefreshedEvent() {
-		System.out.println(((Object)applicationContext).getClass());
-		System.out.println(System.identityHashCode(applicationContext));
 		System.out.println("--- Context Refresh Event Received --- : " + applicationContext);
 	
 		SiteService service = applicationContext.getBean(SiteService.class);
 		SiteVo site = service.getSite();
-		
-		AutowireCapableBeanFactory factory = applicationContext.getAutowireCapableBeanFactory();
-		BeanDefinitionRegistry registry = (BeanDefinitionRegistry)factory;
 		
 		MutablePropertyValues propertyValues = new MutablePropertyValues();
 		propertyValues.add("title", site.getTitle());
@@ -39,6 +34,8 @@ public class ApplicationContextEventListener {
 		beanDefinition.setBeanClass(SiteVo.class);
 		beanDefinition.setPropertyValues(propertyValues);
 		
+		AutowireCapableBeanFactory factory = applicationContext.getAutowireCapableBeanFactory();
+		BeanDefinitionRegistry registry = (BeanDefinitionRegistry)factory;
 		registry.registerBeanDefinition("site", beanDefinition);
 	}
 }
