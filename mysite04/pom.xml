@@ -5,7 +5,7 @@
 		<artifactId>mysite</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>mysite03</artifactId>
+	<artifactId>mysite04</artifactId>
 	<packaging>war</packaging>
 	
 	<properties>
@@ -134,7 +134,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>mysite03</finalName>
+		<finalName>mysite04</finalName>
 		<plugins>
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
