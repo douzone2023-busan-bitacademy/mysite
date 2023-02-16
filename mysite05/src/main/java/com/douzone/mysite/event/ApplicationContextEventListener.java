@@ -8,6 +8,7 @@ import org.springframework.beans.factory.support.GenericBeanDefinition;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.douzone.mysite.service.SiteService;
 import com.douzone.mysite.vo.SiteVo;
@@ -20,7 +21,7 @@ public class ApplicationContextEventListener {
 	@EventListener({ContextRefreshedEvent.class})
 	public void handleContextRefreshedEvent() {
 		System.out.println("--- Context Refresh Event Received --- : " + applicationContext);
-	
+		
 		SiteService service = applicationContext.getBean(SiteService.class);
 		SiteVo site = service.getSite();
 		
