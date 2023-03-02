@@ -12,7 +12,6 @@
 <script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.9.0.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-<script>
 /* guestbook spa application */
 var startNo = 0;
 var isEnd = false;
@@ -21,14 +20,12 @@ var messageBox = function(title, message, callback){
 	$("#dialog-message")
 		.attr("title", title)
 		.dialog({
+				height: 140,
 				modal: true,
 				buttons: {
 					"확인": function() {
 						$(this).dialog( "close" );
 					}
-		
-		
-		
 				},
 				close: callback
 		});
@@ -86,7 +83,7 @@ $(function(){
 	var dialogDelete = $("#dialog-delete-form").dialog({
 		autoOpen: false,
 		width: 400,
-		height: 300,
+		height: 190,
 		modal: true,
 		buttons: {
 			"삭제": function(){
@@ -94,7 +91,7 @@ $(function(){
 				var password = $("#password-delete").val();
 
 				$.ajax({
-					url: '${pageContext.request.contextPath }/guestbook/api' + no,
+					url: '${pageContext.request.contextPath }/guestbook/api/' + no,
 					async: true,
 					type: 'delete',
 					dataType: 'json',
@@ -221,52 +218,19 @@ $(function(){
 					<textarea id="tx-content" placeholder="내용을 입력해 주세요."></textarea>
 					<input type="submit" value="보내기" />
 				</form>
-				<ul id="list-guestbook">
-
-					<li data-no=''>
-						<strong>지나가다가</strong>
-						<p>
-							별루입니다.<br>
-							비번:1234 -,.-
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-					
-					<li data-no=''>
-						<strong>둘리</strong>
-						<p>
-							안녕하세요<br>
-							홈페이지가 개 굿 입니다.
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-
-					<li data-no=''>
-						<strong>주인</strong>
-						<p>
-							아작스 방명록 입니다.<br>
-							테스트~
-						</p>
-						<strong></strong>
-						<a href='' data-no=''>삭제</a> 
-					</li>
-					
-									
-				</ul>
+				<ul id="list-guestbook"></ul>
 			</div>
 			<div id="dialog-delete-form" title="메세지 삭제" style="display:none">
-  				<p class="validateTips normal">작성시 입력했던 비밀번호를 입력하세요.</p>
-  				<p class="validateTips error" style="display:none">비밀번호가 틀립니다.</p>
-  				<form>
+  				<p class="validateTips normal" style="padding:10px 0 0 0">작성시 입력했던 비밀번호를 입력하세요.</p>
+  				<p class="validateTips error" style="padding:10px 0 0 0; display:none">비밀번호가 틀립니다.</p>
+  				<form style="margin:10px 0 0 0">
  					<input type="password" id="password-delete" value="" class="text ui-widget-content ui-corner-all">
 					<input type="hidden" id="hidden-no" value="">
 					<input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
   				</form>
 			</div>
 			<div id="dialog-message" title="" style="display:none">
-  				<p></p>
+  				<p style="line-height:34px"></p>
 			</div>						
 		</div>
 		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
