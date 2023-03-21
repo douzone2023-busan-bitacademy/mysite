@@ -7,7 +7,11 @@ import styles from '../../assets/scss/component/gallery/Galery.scss';
 export default function Index() {
     const [imageList, setImageList] = useState([]);
 
-    useEffect(async () => {
+    useEffect(() => {
+        fetchList();
+    }, []);
+
+    const fetchList = async () => {
         try {
             const response = await fetch('/api/gallery', {
                 method: 'get',
@@ -29,7 +33,7 @@ export default function Index() {
         } catch (err) {
             console.error(err);
         }
-    }, []);
+    }
 
     const notifyImage = {
         add: async function (comment, file) {
